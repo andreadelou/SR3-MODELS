@@ -1,4 +1,5 @@
 import struct
+from obj import Obj
 
 def char(c):
   return struct.pack('=c', c.encode('ascii'))
@@ -159,5 +160,6 @@ class Render(object):
 r = Render(400,400)
 r.glCreateWindow(400, 400)
 r.glViewPort(400,400 , 400, 400)
+r.glObjModel('silla.obj', (0, -15), (0.03, 0.03))
 
 r.glFinish("obj.bmp")
