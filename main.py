@@ -112,7 +112,7 @@ class Render(object):
         y1 = int(round((y1+1) * self.height / 2))
         x2 = int(round((x2+1) * self.width / 2))
         y2 = int(round((y2+1) * self.height / 2))
-        steep=abs(y2 - y1)>abs(x2 - x1)
+        steep=(abs(y2 - y1))>(abs(x2 - x1))
         if steep:
             x1, y1 = y1, x1
             x2, y2 = y2, x2
