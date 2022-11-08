@@ -134,6 +134,27 @@ class Render(object):
             else:
                 self.framebuffer[y][x] = self.pintar
             offset += 2*dy
+  
+  def glObjModel(self, file_name, translate=(0,0), scale=(1,1)):
+        #Lector .obj
+        model = Obj(file_name)
+        model.read()
+        
+        for face in model.faces:
+            vertices_ctr = len(face)
+            for j in range(vertices_ctr):
+                f1 = face[j][0]
+                f2 = face[(j+1) % vertices_ctr][0]
+                
+                v1 = model.vertices[f1 - 1]
+                v2 = model.vertices[f2 - 1]
+
+                x1 = (v1[0] + translate[0]) * scale[0]
+                y1 = (v1[1] + translate[1]) * scale[1]
+                x2 = (v2[0] + translate[0]) * scale[0]
+                y2 = (v2[1] + translate[1]) * scale[1]
+
+                self.glLine(x1, y1, x2, y2)
     
 r = Render(400,400)
 r.glCreateWindow(400, 400)
